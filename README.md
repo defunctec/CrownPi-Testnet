@@ -21,7 +21,7 @@ ifconfig
 ```
 6. Once logged in via SSH, use this command to initiate the installation process
 ```sh
-sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
+sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi-Testnet/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
 ```
 7. The script will first ask you to change the password of the device, this is wise for security. Installation is mostly automated but does require manual input in parts.
 8. Once the script has installed the Crown client and setup the backend the script will ask you which VPN provider you use, NordVPN or VPNArea, please choose and follow the instructions.
