@@ -135,7 +135,7 @@ if [ $choice -eq 1 ] ; then
         dpkg -i zabbix-release_3.4-1+trusty_all.deb
         sudo apt-get update -y
         sudo apt-get install zabbix-agent -y
-        echo 1.Edit zabbix agent configuration file using 'nano /etc/zabbix/zabbix_agentd.conf'
+        echo 1.Edit zabbix agent configuration file using 'sudo nano /etc/zabbix/zabbix_agentd.conf'
         echo Server=[zabbix server ip] Hostname=[Hostname of RaspberryPi] EG, Server=192.168.1.10 Hostname=raspbery1
         
 
