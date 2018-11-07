@@ -38,7 +38,7 @@ update_repos() {
 # Download Crown client (Update link with new client)
 download_package() {
     # Password change prompt
-    echo Getting 0.12.5.1 client
+    echo Getting 0.12.5.2 client
     # Create temporary directory
     dir=`mktemp -d`
     if [ -z "$dir" ]; then
@@ -47,7 +47,7 @@ download_package() {
         mkdir -p $dir
     fi
     # Change this later to take latest release version.
-    wget "https://github.com/Crowndev/crown-core/releases/download/v0.12.5.1/Crown-RaspberryPi.zip" -O $dir/crown.zip
+    wget "https://gitlab.crown.tech/crown/crown-core/-/jobs/3748/artifacts/download" -O $dir/crown.zip
 }
 
 # Install Crown client
@@ -64,7 +64,7 @@ configure_firewall() {
     echo Setting up firewall
     sudo ufw allow ssh/tcp
     sudo ufw limit ssh/tcp
-    sudo ufw allow 9340/tcp
+    sudo ufw allow 19340/tcp
     sudo ufw allow 53/udp
     sudo ufw allow 111/udp
     sudo ufw allow 123/udp

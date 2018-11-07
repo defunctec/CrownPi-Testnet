@@ -1,4 +1,4 @@
-# CrownPi
+# CrownPi-Testnet 12.5.2
 > Local Masternode hosting for the Crown(CRW) community.
 
 ![](http://i63.tinypic.com/vxke4x.png)
@@ -31,6 +31,7 @@ sudo nano /root/.crown/crown.conf
 ```
 Enter -   
 ```sh
+testnet=1
 daemon=1
 rpcuser=MAKE-NEW-USER
 rpcpassword=MAKE-NEW-PASSWORD
@@ -59,7 +60,7 @@ sudo crown-cli masternode status
 Raspberry Pi - Raspian Stretch Lite:
 
 ```sh
-sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
+sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi-Testnet/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
 ```
 
 ## NordVPN Setup
