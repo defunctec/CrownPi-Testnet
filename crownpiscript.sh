@@ -22,10 +22,10 @@ create_swap() {
     sudo chmod 600 /var/cache/swap/myswap
     sudo mkswap /var/cache/swap/myswap
     sudo swapon /var/cache/swap/myswap
-    swap_line='/var/cache/swap/myswap   none    swap    sw  0   0'
+    sudo swap_line='/var/cache/swap/myswap   none    swap    sw  0   0'
     # Add the line only once 
     sudo grep -q -F "$swap_line" /etc/fstab || echo "$swap_line" | sudo tee --append /etc/fstab > /dev/null
-    cat /etc/fstab
+    sudo cat /etc/fstab
 }
 
 # Update OS
@@ -38,7 +38,7 @@ update_repos() {
 # Download Crown client (Update link with new client)
 download_package() {
     # Password change prompt
-    echo Getting 0.12.5.2 client
+    echo Getting 0.12.7.0 client
     # Create temporary directory
     dir=`mktemp -d`
     if [ -z "$dir" ]; then
@@ -47,7 +47,7 @@ download_package() {
         mkdir -p $dir
     fi
     # Change this later to take latest release version.
-    wget "https://gitlab.crown.tech/crown/crown-core/-/jobs/4084/artifacts/download" -O $dir/crown.zip
+    wget "https://gitlab.crown.tech/crown/crown-core/-/jobs/4605/artifacts/download" -O $dir/crown.zip
 }
 
 # Install Crown client
@@ -223,6 +223,7 @@ else
 fi
 done
 
+sudo crownd
 
 # Notes
 echo Please continue with the guide...
