@@ -47,7 +47,7 @@ download_package() {
         mkdir -p $dir
     fi
     # Change this later to take latest release version.
-    wget "https://gitlab.crown.tech/crown/crown-core/-/jobs/4603/artifacts/download" -O $dir/crown.zip
+    wget "https://gitlab.crown.tech/crown/crown-core/-/jobs/5014/artifacts/download" -O $dir/crown.zip
 }
 
 # Install Crown client
