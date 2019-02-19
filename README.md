@@ -1,4 +1,4 @@
-# CrownPi-Testnet 0.12.7.0
+# CrownPiPoS-Testnet 12.7.4
 > Local Masternode hosting for the Crown(CRW) community.
 
 ![](http://i63.tinypic.com/vxke4x.png)
@@ -23,23 +23,11 @@ ifconfig
 ```sh
 sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi-Testnet/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
 ```
-7. The script will first ask you to change the password of the device, this is wise for security. Installation is mostly automated but does require manual input in parts.
+7. Installation is mostly automated but does require manual input at the end.
 8. Once the script has installed the Crown client and setup the backend the script will ask you which VPN provider you use, NordVPN or VPNArea, please choose and follow the instructions.
-9. Now your VPN is setup you can setup a Crown Masternode or Systemnode
+9. Now the VPN is setup, use the crown.conf to enter VPN IP, genkey ect.
 ```sh
 sudo nano /root/.crown/crown.conf
-```
-Enter -   
-```sh
-testnet=1
-daemon=1
-rpcuser=MAKE-NEW-USER
-rpcpassword=MAKE-NEW-PASSWORD
-listen=1
-server=1
-externalip=ENTERVPNIPADDRESS
-masternode=1
-masternodeprivkey=YOURMASTERNODEGENKEY
 ```
 10. Start the Crown Client
 ```sh
@@ -108,4 +96,3 @@ Quick guide to using VPNArea with CrownPI
 ## About Crown
 
 HomePage - https://Crown.tech
-Chat - https://mm.crownlab.eu
