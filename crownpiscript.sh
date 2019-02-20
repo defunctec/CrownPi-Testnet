@@ -2,6 +2,11 @@
 
 # Software install
 install_dependencies() {
+   clear
+}
+
+# Software install
+install_dependencies() {
     echo Installing software...
     sudo apt-get install ufw -y
     sudo apt-get install unzip -y
@@ -217,6 +222,8 @@ configure_conf() {
 
 # Crown package
 main() {
+    # Clear screen
+    clear
     # Stop crownd (in case it's running)
     sudo crown-cli stop
     # Install Packages
