@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # Software install
-install_dependencies() {
+clear_screen() {
    clear
+   CrownPi is now installing...
+   sleep 3
 }
 
 # Software install
@@ -223,7 +225,7 @@ configure_conf() {
 # Crown package
 main() {
     # Clear screen
-    clear
+    clear_screen
     # Stop crownd (in case it's running)
     sudo crown-cli stop
     # Install Packages
