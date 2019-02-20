@@ -3,7 +3,7 @@
 # Software install
 clear_screen() {
    clear
-   CrownPi is now installing...
+   echo CrownPi is now installing...
    sleep 3
 }
 
