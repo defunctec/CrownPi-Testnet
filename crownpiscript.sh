@@ -59,7 +59,7 @@ configure_firewall() {
     echo Setting up firewall...
     sudo ufw allow ssh/tcp
     sudo ufw limit ssh/tcp
-    sudo ufw allow 9340/tcp
+    sudo ufw allow 19340/tcp
 }
 
 # Maintenance scripts
