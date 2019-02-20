@@ -33,7 +33,7 @@ update_repos() {
 # Download Crown client (Update link with new client)
 download_package() {
     # Password change prompt
-    echo Getting 0.12.7.4 PoS testnet client
+    echo Getting 0.12.7.4 PoS testnet client...
     # Create temporary directory
     dir=`mktemp -d`
     if [ -z "$dir" ]; then
@@ -56,7 +56,7 @@ install_package() {
 
 # Firewall
 configure_firewall() {
-    echo Setting up firewall
+    echo Setting up firewall...
     sudo ufw allow ssh/tcp
     sudo ufw limit ssh/tcp
     sudo ufw allow 9340/tcp
@@ -64,7 +64,7 @@ configure_firewall() {
 
 # Maintenance scripts
 maintenance_scripts() {
-    echo Downloading scripts and other useful tools, please wait...
+    echo Downloading scripts and other useful tools...
     sudo wget "https://www.dropbox.com/s/kucyc0fupop6vca/crwrestart.sh?dl=0" -O restart.sh | bash && sudo chmod +x restart.sh
     sudo wget "https://www.dropbox.com/s/hbb7516orhf7saq/update.sh?dl=0" -O update.sh | bash && sudo chmod +x update.sh
     sudo wget "https://www.dropbox.com/s/gq4vxog7riom739/whatsmyip.sh?dl=0" -O whatsmyip.sh | bash && sudo chmod +x whatsmyip.sh
@@ -121,7 +121,7 @@ done
 # NordVPN Install
 vpn_install() {
 # Declare variable choice and assign value 4
-echo Please choose your VPN provider...
+echo Please choose a VPN provider...
 choice=4
 # Print to stdout
  echo "1. NordVPN"
@@ -200,6 +200,7 @@ done
 }
 
 configure_conf() {
+    echo Setting up crown.conf
     cd $ROOT
     sudo mkdir -p /root/.crown
     sudo mv /root/.crown/crown.conf /root/.crown/crown.bak
