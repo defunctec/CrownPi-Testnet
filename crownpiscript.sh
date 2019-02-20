@@ -2,9 +2,16 @@
 
 # Software install
 clear_screen() {
-   clear
-   echo CrownPi is now installing...
-   sleep 3
+     clear
+      _____                         _____ _ 
+     / ____|                       |  __ (_)
+    | |     _ __ _____      ___ __ | |__) | 
+    | |    | '__/ _ \ \ /\ / / '_ \|  ___/ |
+    | |____| | | (_) \ V  V /| | | | |   | |
+     \_____|_|  \___/ \_/\_/ |_| |_|_|   |_|
+     
+     echo CrownPi is now installing...
+     sleep 3
 }
 
 # Software install
