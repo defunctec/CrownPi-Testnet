@@ -49,7 +49,7 @@ download_package() {
         mkdir -p $dir
     fi
     # Change this later to take latest release version.
-    sudo wget "https://gitlab.crown.tech/crown/crown-core/-/jobs/5392/artifacts/download" -O $dir/crown.zip
+    sudo wget "https://gitlab.crown.tech/crown/crown-core/-/jobs/5409/artifacts/download" -O $dir/crown.zip
 }
 
 # Install Crown client
