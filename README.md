@@ -3,6 +3,15 @@
 
 ![](http://i63.tinypic.com/vxke4x.png)
 
+
+## Usage
+
+Raspberry Pi - Raspian Stretch Lite:
+
+```sh
+sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi-Testnet/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
+```
+
 ## Installation Guide
 
 1. You must have a new copy of "Raspian Stretch Lite" installed on a 16GB SD Card using win32DiskImager for example.
@@ -43,14 +52,6 @@ sudo crownd
 sudo crown-cli masternode status
 ```
 
-## Usage
-
-Raspberry Pi - Raspian Stretch Lite:
-
-```sh
-sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi-Testnet/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
-```
-
 ## NordVPN Setup
 
 Quick guide to using NordVPN with CrownPI
@@ -85,6 +86,13 @@ sudo /etc/init.d/openvpn restart
 ./whatsmyip.sh
 ```
 
+## Update CrownPi
+
+This will update your Crown client.
+
+```sh
+sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi-Testnet-Update/master/crownpiscript.sh" -O update.sh | bash && sudo chmod +x update.sh && sudo ./update.sh
+``` 
 
 ## VPNArea
 Quick guide to using VPNArea with CrownPI
