@@ -11,7 +11,7 @@ clear_screen() {
      echo " \_____|_|  \___/ \_/\_/ |_| |_|_|   |_|    |_|\___||___/\__|_| |_|\___|\__|"     
      sleep 3
      echo CrownPi is now installing...
-     sleep 3
+     sleep 2
 }
 
 # Software install
@@ -73,7 +73,6 @@ configure_firewall() {
 maintenance_scripts() {
     echo Downloading scripts and other useful tools...
     sudo wget "https://www.dropbox.com/s/kucyc0fupop6vca/crwrestart.sh?dl=0" -O restart.sh | bash && sudo chmod +x restart.sh
-    sudo wget "https://www.dropbox.com/s/hbb7516orhf7saq/update.sh?dl=0" -O update.sh | bash && sudo chmod +x update.sh
     sudo wget "https://www.dropbox.com/s/gq4vxog7riom739/whatsmyip.sh?dl=0" -O whatsmyip.sh | bash && sudo chmod +x whatsmyip.sh
 }
 
