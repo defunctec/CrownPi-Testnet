@@ -40,7 +40,7 @@ update_repos() {
 # Download Crown client (Update link with new client)
 download_package() {
     # Password change prompt
-    echo Getting 0.12.7.5 PoS testnet client...
+    echo Getting 0.12.7.6 PoS testnet client...
     # Create temporary directory
     dir=`mktemp -d`
     if [ -z "$dir" ]; then
@@ -49,7 +49,7 @@ download_package() {
         mkdir -p $dir
     fi
     # Change this later to take latest release version.
-    sudo wget "https://gitlab.crown.tech/crown/crown-core/-/jobs/5583/artifacts/download" -O $dir/crown.zip
+    sudo wget "https://gitlab.crown.tech/crown/crown-core/-/jobs/5692/artifacts/download" -O $dir/crown.zip
 }
 
 # Install Crown client
