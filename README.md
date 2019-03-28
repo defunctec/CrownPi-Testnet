@@ -1,4 +1,4 @@
-# CrownPiPoS-Testnet 12.7.6
+# CrownPi - (Testnet 0.13.0)
 > Local Masternode hosting for the Crown(CRW) community.
 
 ![](http://i63.tinypic.com/vxke4x.png)
