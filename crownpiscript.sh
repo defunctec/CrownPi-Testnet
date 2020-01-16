@@ -93,8 +93,9 @@ clear_screen() {
     if [ "$choice" -eq 1 ] ; then
     echo ===============================================
     echo Downloading bootstrap
-    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "/root/.crown/bootstrap.zip"
+    sudo wget "https://nextcloud.crownplatform.com/index.php/s/kaJ438j9CR4wbri/download" -O "/root/.crown/bootstrap.zip"
     sudo unzip "/root/.crown/bootstrap.zip"
+    sudo mv /root/bootstrap.dat /root/.crown/bootstrap.dat
     sudo rm -rf "/root/.crown/bootstrap.zip"
     sudo crown-server-install.sh -c -m -w
     else
@@ -102,8 +103,24 @@ clear_screen() {
     if [ "$choice" -eq 2 ] ; then
     echo ===============================================
     echo "Skipping bootstrap"
+    echo ===============================================
     echo "Installing Crown client"
-    sudo crown-server-install.sh -c -m -w
+# Client download
+    echo "Getting 0.14.0 client..."
+    # Create temporary directory
+    dir=$(mktemp -d)
+    if [ -z "$dir" ]; then
+    # Create directory under $HOME if above operation failed
+    dir=$HOME/crown-temp
+    mkdir -p "$dir"
+    fi
+    # Change this later to take latest release version.(UPDATE)
+    sudo wget "https://gitlab.crownplatform.com/crown/crown-core/-/jobs/6999/artifacts/download" -O "$dir/crown.zip"
+# Install Crown client
+    sudo unzip -d "$dir/crown" "$dir/crown.zip"
+    sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
+    sudo cp -f "$dir"/crown/*/lib/* /usr/local/lib/
+    sudo rm -rf "$tmp"
     else
     echo "Please make a choice between Yes or No !"
     echo "1. Yes"
@@ -122,6 +139,35 @@ clear_screen() {
     echo ===============================================
     echo Downloading scripts and other useful tools...
     sudo wget "https://www.dropbox.com/s/gq4vxog7riom739/whatsmyip.sh?dl=0" -O whatsmyip.sh | bash && sudo chmod +x whatsmyip.sh
+    echo ===============================================
+    echo "Setting up crown.conf"
+    cd "$ROOT" || exit
+    sudo mkdir -p /root/.crown
+    sudo mv /root/.crown/crown.conf /root/.crown/crown.bak
+    sudo touch /root/.crown/crown.conf
+    IP=$(curl http://checkip.amazonaws.com/)
+    PW=$(< /dev/urandom tr -dc a-zA-Z0-9 | head -c32;echo;)
+    sudo echo "==========================================================="
+    sudo pwd 
+    echo 'testnet=1' | sudo tee -a /root/.crown/crown.conf
+    echo 'daemon=1' | sudo tee -a /root/.crown/crown.conf 
+    echo 'staking=0' | sudo tee -a /root/.crown/crown.conf
+    echo 'addnode=138.197.182.78' | sudo tee -a /root/.crown/crown.conf
+    echo 'addnode=46.101.41.172' | sudo tee -a /root/.crown/crown.conf
+    echo 'addnode=128.199.100.139' | sudo tee -a /root/.crown/crown.conf
+    echo 'rpcallowip=127.0.0.1' | sudo tee -a /root/.crown/crown.conf 
+    echo 'rpcuser=crowncoinrpc' | sudo tee -a /root/.crown/crown.conf 
+    echo 'rpcpassword='"$PW" | sudo tee -a /root/.crown/crown.conf 
+    echo 'listen=1' | sudo tee -a /root/.crown/crown.conf 
+    echo 'server=1' | sudo tee -a /root/.crown/crown.conf 
+    echo 'externalip='"$IP" | sudo tee -a /root/.crown/crown.conf
+    echo 'masterode=1' | sudo tee -a /root/.crown/crown.conf
+    echo 'masternodeprivkey=YOURGENKEYHERE' | sudo tee -a /root/.crown/crown.conf
+# Crontab entry
+    echo ===============================================
+    echo Adding to Crontab
+    echo 'MAILTO=""' | sudo tee -a /var/spool/cron/crontabs/root
+    echo '@reboot /usr/local/bin/crownd' | sudo tee -a /var/spool/cron/crontabs/root
 # Zabbix Install
 # Zabbix A open
     echo ===============================================
@@ -343,9 +389,9 @@ clear_screen() {
     echo ===============================================
     echo Downloading bootstrap
     sudo mkdir /root/.crown
-    sudo wget "https://nextcloud.crownplatform.com/index.php/s/Mb5G2xy4NcKbLrJ/download" -O "bootstrap.zip"
+    sudo wget "https://nextcloud.crownplatform.com/index.php/s/kaJ438j9CR4wbri/download" -O "bootstrap.zip"
     sudo unzip "bootstrap.zip"
-    sudo mv bootstrap.dat .crown/bootstrap.dat
+    sudo mv /root/bootstrap.dat /root/.crown/bootstrap.dat
     sudo rm -rf "/root/.crown/bootstrap.zip"
     else
     if [ "$choice" -eq 2 ] ; then
@@ -365,7 +411,7 @@ clear_screen() {
     # Password change prompt
 # Client download
     echo ===============================================
-    echo "Getting 0.13.4 MN-PoS client..."
+    echo "Getting 0.14.0 client..."
     # Create temporary directory
     dir=$(mktemp -d)
     if [ -z "$dir" ]; then
@@ -374,7 +420,7 @@ clear_screen() {
     mkdir -p "$dir"
     fi
     # Change this later to take latest release version.(UPDATE)
-    sudo wget "https://github.com/Crowndev/crown-core/releases/download/v0.13.4.0/Crown-0.13.4.0-RaspberryPi.zip" -O "$dir/crown.zip"
+    sudo wget "https://gitlab.crownplatform.com/crown/crown-core/-/jobs/6999/artifacts/download" -O "$dir/crown.zip"
 # Install Crown client
     echo ===============================================
     echo "Installing Crown client..."
@@ -499,7 +545,7 @@ clear_screen() {
     PW=$(< /dev/urandom tr -dc a-zA-Z0-9 | head -c32;echo;)
     sudo echo "==========================================================="
     sudo pwd 
-    echo 'testnet=0' | sudo tee -a /root/.crown/crown.conf
+    echo 'testnet=1' | sudo tee -a /root/.crown/crown.conf
     echo 'daemon=1' | sudo tee -a /root/.crown/crown.conf 
     echo 'staking=0' | sudo tee -a /root/.crown/crown.conf
     echo 'addnode=138.197.182.78' | sudo tee -a /root/.crown/crown.conf
