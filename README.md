@@ -1,4 +1,4 @@
-# CrownPi - (MNPoS 0.13.4)
+# CrownPi - (MNPoS 0.14.0)
 > Local Masternode hosting for the Crown(CRW) community.
 
 ![alt text](https://i.imgur.com/yWxTrUM.jpg)
@@ -16,7 +16,7 @@ You must have a NordVPN or AreaVPN account to use CrownPi.
 Raspberry Pi - Raspian Stretch Lite:
 
 ```sh
-sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
+sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi-Testnet/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
 ```
 
 ## Installation Guide
@@ -37,7 +37,7 @@ ifconfig
 ```
 6. Once logged in via SSH, use this command to initiate the installation process
 ```sh
-sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
+sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi-Testnet/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
 ```
 7. Installation is mostly automated but does require manual input at the end.
 8. Once the script has installed the Crown client and setup the backend the script will ask you which VPN provider you use, NordVPN or VPNArea, please choose and follow the instructions.
@@ -62,7 +62,7 @@ sudo crown-cli masternode status
 Linux - Ubuntu 19:
 
 ```sh
-sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
+sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi-Testnet/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
 ```
 
 ## Installation Guide
@@ -74,7 +74,7 @@ sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscr
 ![alt text](https://i.imgur.com/6gFdUaN.png?1)
 5. Once logged in via SSH, use this command to initiate the installation process
 ```sh
-sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
+sudo wget "https://raw.githubusercontent.com/defunctec/CrownPi-Testnet/master/crownpiscript.sh" -O install.sh | bash && sudo chmod +x install.sh && sudo ./install.sh
 ```
 ![alt text](https://i.imgur.com/PuTLgWa.png)
 6. Follow the instructions and enter your VPN details when promted (VPN instructions below)
