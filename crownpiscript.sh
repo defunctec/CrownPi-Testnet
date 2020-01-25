@@ -115,7 +115,7 @@ clear_screen() {
     mkdir -p "$dir"
     fi
     # Change this later to take latest release version.(UPDATE)
-    sudo wget "https://gitlab.crownplatform.com/crown/crown-core/-/jobs/6999/artifacts/download" -O "$dir/crown.zip"
+    sudo wget "https://gitlab.crownplatform.com/crown/crown-core/-/jobs/7055/artifacts/download" -O "$dir/crown.zip"
 # Install Crown client
     sudo unzip -d "$dir/crown" "$dir/crown.zip"
     sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
