@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Clear Screen
-clear_screen() {
      clear
      echo "  _____                         _____ _   _______        _              _ " 
      echo " / ____|                       |  __ (_) |__   __|      | |            | |"
@@ -120,7 +119,7 @@ clear_screen() {
     sudo tar -xf "$dir/crown" "$dir/linux.tar.xz"
     sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
     sudo cp -f "$dir"/crown/*/lib/* /usr/local/lib/
-    sudo rm -rf "$tmp"
+    sudo rm -rf "$dir"
     else
     echo "Please make a choice between Yes or No !"
     echo "1. Yes"
@@ -333,7 +332,7 @@ clear_screen() {
     sudo unzip -d "$dir/crown" "$dir/crown.zip"
     sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
     sudo cp -f "$dir"/crown/*/lib/* /usr/local/lib/
-    sudo rm -rf "$tmp"
+    sudo rm -rf "$dir"
 # Update ann
     echo "Update finished."
     else
@@ -425,7 +424,7 @@ clear_screen() {
     sudo unzip -d "$dir/crown" "$dir/crown.zip"
     sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
     sudo cp -f "$dir"/crown/*/lib/* /usr/local/lib/
-    sudo rm -rf "$tmp"
+    sudo rm -rf "$dir"
 # Firewall
     echo ===============================================
     echo "Setting up firewall..."
@@ -559,9 +558,9 @@ clear_screen() {
     echo 'masternodeprivkey=YOURGENKEYHERE' | sudo tee -a /root/.crown/crown.conf
 # Crontab entry
     echo ===============================================
-	echo Adding to Crontab
-	echo 'MAILTO=""' | sudo tee -a /var/spool/cron/crontabs/root
-	echo '@reboot /usr/local/bin/crownd' | sudo tee -a /var/spool/cron/crontabs/root
+    echo Adding to Crontab
+    echo 'MAILTO=""' | sudo tee -a /var/spool/cron/crontabs/root
+    echo '@reboot /usr/local/bin/crownd' | sudo tee -a /var/spool/cron/crontabs/root
 # Notes
     echo ===============================================
     echo Please continue with the guide...
