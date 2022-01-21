@@ -56,6 +56,7 @@ clear_screen() {
     sudo apt-get install nano -y
     sudo apt-get install p7zip -y
     sudo apt-get install curl -y
+    sudo apt install xz-utils -y
     echo "Done"
     echo
 # Attempt to create 1GB swap ram
@@ -78,11 +79,11 @@ clear_screen() {
 # Maintenance scripts
     echo ===============================================
     echo Downloading script...
-    sudo curl -o /usr/local/bin/crown-server-install.sh https://gitlab.crownplatform.com/crown/crown-core/raw/master/scripts/crown-server-install.sh
-    sudo chmod +x /usr/local/bin/crown-server-install.sh
+    sudo curl -o /usr/local/bin/crown-testnet-install.sh https://gitlab.crownplatform.com/crown/crown-core/-/raw/master/scripts/crown-testnet-install.sh
+    sudo chmod +x /usr/local/bin/crown-testnet-install.sh
 # Boot A open
     echo ===============================================
-    echo Would you like to download the bootstrap?
+    echo Would you like to download the snapshot?
     choice=3
     echo "1. Yes"
     echo "2. No"
@@ -92,21 +93,20 @@ clear_screen() {
 # Boot A1
     if [ "$choice" -eq 1 ] ; then
     echo ===============================================
-    echo Downloading bootstrap
-    sudo wget "https://nextcloud.crownplatform.com/index.php/s/kaJ438j9CR4wbri/download" -O "/root/.crown/bootstrap.zip"
-    sudo unzip "/root/.crown/bootstrap.zip"
-    sudo mv /root/bootstrap.dat /root/.crown/bootstrap.dat
-    sudo rm -rf "/root/.crown/bootstrap.zip"
+    echo Downloading snapshot
+    sudo wget "https://storage.crownplatform.com/s/7W7CiJJMF9Zkxxx/download" -O "/home/testnet/.crown/snapshot.zip"
+    sudo unzip "/home/testnet/.crown/snapshot.zip"
+    sudo rm -rf "/home/testnet/.crown/snapshot.zip"
     sudo crown-server-install.sh -c -m -w
     else
 # Boot A2
     if [ "$choice" -eq 2 ] ; then
     echo ===============================================
-    echo "Skipping bootstrap"
+    echo "Skipping snapshot"
     echo ===============================================
     echo "Installing Crown client"
 # Client download
-    echo "Getting 0.14.0 client..."
+    echo "Getting 0.0.0.5 client..."
     # Create temporary directory
     dir=$(mktemp -d)
     if [ -z "$dir" ]; then
@@ -115,9 +115,9 @@ clear_screen() {
     mkdir -p "$dir"
     fi
     # Change this later to take latest release version.(UPDATE)
-    sudo wget "https://gitlab.crownplatform.com/crown/crown-core/-/jobs/7055/artifacts/download" -O "$dir/crown.zip"
+    sudo wget "https://github.com/Crowndev/crown/releases/download/0.0.0.5/linux.tar.xz" -O "$dir/linux.tar.xz"
 # Install Crown client
-    sudo unzip -d "$dir/crown" "$dir/crown.zip"
+    sudo tar -xf "$dir/crown" "$dir/linux.tar.xz"
     sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
     sudo cp -f "$dir"/crown/*/lib/* /usr/local/lib/
     sudo rm -rf "$tmp"
@@ -135,6 +135,7 @@ clear_screen() {
     sudo ufw allow ssh/tcp
     sudo ufw limit ssh/tcp
     sudo ufw allow 9341/tcp
+    sudo ufw allow 9340
 # Help scripts
     echo ===============================================
     echo Downloading scripts and other useful tools...
@@ -142,32 +143,29 @@ clear_screen() {
     echo ===============================================
     echo "Setting up crown.conf"
     cd "$ROOT" || exit
-    sudo mkdir -p /root/.crown
-    sudo mv /root/.crown/crown.conf /root/.crown/crown.bak
-    sudo touch /root/.crown/crown.conf
+    sudo mkdir -p /home/testnet/.crown
+    sudo mv /home/testnet/.crown/crown.conf /home/testnet/.crown/crown.bak
+    sudo touch /home/testnet/.crown/crown.conf
     IP=$(curl http://checkip.amazonaws.com/)
     PW=$(< /dev/urandom tr -dc a-zA-Z0-9 | head -c32;echo;)
     sudo echo "==========================================================="
     sudo pwd 
-    echo 'testnet=1' | sudo tee -a /root/.crown/crown.conf
-    echo 'daemon=1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'staking=0' | sudo tee -a /root/.crown/crown.conf
-    echo 'addnode=138.197.182.78' | sudo tee -a /root/.crown/crown.conf
-    echo 'addnode=46.101.41.172' | sudo tee -a /root/.crown/crown.conf
-    echo 'addnode=128.199.100.139' | sudo tee -a /root/.crown/crown.conf
-    echo 'rpcallowip=127.0.0.1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'rpcuser=crowncoinrpc' | sudo tee -a /root/.crown/crown.conf 
-    echo 'rpcpassword='"$PW" | sudo tee -a /root/.crown/crown.conf 
-    echo 'listen=1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'server=1' | sudo tee -a /root/.crown/crown.conf 
-    echo 'externalip='"$IP" | sudo tee -a /root/.crown/crown.conf
-    echo 'masterode=1' | sudo tee -a /root/.crown/crown.conf
-    echo 'masternodeprivkey=YOURGENKEYHERE' | sudo tee -a /root/.crown/crown.conf
+    echo 'testnet=1' | sudo tee -a /home/testnet/.crown/crown.conf
+    echo 'daemon=1' | sudo tee -a /home/testnet/.crown/crown.conf 
+    echo 'staking=0' | sudo tee -a /home/testnet/.crown/crown.conf
+    echo 'rpcallowip=127.0.0.1' | sudo tee -a /home/testnet/.crown/crown.conf 
+    echo 'rpcuser=crowncoinrpc' | sudo tee -a /home/testnet/.crown/crown.conf 
+    echo 'rpcpassword='"$PW" | sudo tee -a /home/testnet/.crown/crown.conf 
+    echo 'listen=1' | sudo tee -a /home/testnet/.crown/crown.conf 
+    echo 'server=1' | sudo tee -a /home/testnet/.crown/crown.conf 
+    echo 'externalip='"$IP" | sudo tee -a /home/testnet/.crown/crown.conf
+    echo 'masterode=1' | sudo tee -a /home/testnet/.crown/crown.conf
+    echo 'masternodeprivkey=YOURGENKEYHERE' | sudo tee -a /home/testnet/.crown/crown.conf
 # Crontab entry
     echo ===============================================
     echo Adding to Crontab
-    echo 'MAILTO=""' | sudo tee -a /var/spool/cron/crontabs/root
-    echo '@reboot /usr/local/bin/crownd' | sudo tee -a /var/spool/cron/crontabs/root
+    echo 'MAILTO=""' | sudo tee -a /var/spool/cron/crontabs/home/testnet
+    echo '@reboot /usr/local/bin/crownd' | sudo tee -a /var/spool/cron/crontabs/home/testnet
 # Zabbix Install
 # Zabbix A open
     echo ===============================================
