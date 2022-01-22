@@ -93,6 +93,7 @@
     if [ "$choice" -eq 1 ] ; then
     echo ===============================================
     echo Downloading snapshot
+    sudo mkdir /home/testnet/.crown
     sudo wget "https://storage.crownplatform.com/s/7W7CiJJMF9Zkxxx/download" -O "/home/testnet/.crown/snapshot.zip"
     sudo unzip "/home/testnet/.crown/snapshot.zip"
     sudo rm -rf "/home/testnet/.crown/snapshot.zip"
@@ -106,6 +107,7 @@
     echo "Installing Crown client"
 # Client download
     echo "Getting 0.0.0.5 client..."
+    sudo mkdir /home/testnet/.crown
     # Create temporary directory
     dir=$(mktemp -d)
     if [ -z "$dir" ]; then
@@ -119,7 +121,7 @@
     sudo tar -xf "$dir/crown" "$dir/linux.tar.xz"
     sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
     sudo cp -f "$dir"/crown/*/lib/* /usr/local/lib/
-    sudo rm -rf "$dir"
+    sudo rm -rf "$tmp"
     else
     echo "Please make a choice between Yes or No !"
     echo "1. Yes"
@@ -332,7 +334,7 @@
     sudo unzip -d "$dir/crown" "$dir/crown.zip"
     sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
     sudo cp -f "$dir"/crown/*/lib/* /usr/local/lib/
-    sudo rm -rf "$dir"
+    sudo rm -rf "$tmp"
 # Update ann
     echo "Update finished."
     else
@@ -424,7 +426,7 @@
     sudo unzip -d "$dir/crown" "$dir/crown.zip"
     sudo cp -f "$dir"/crown/*/bin/* /usr/local/bin/
     sudo cp -f "$dir"/crown/*/lib/* /usr/local/lib/
-    sudo rm -rf "$dir"
+    sudo rm -rf "$tmp"
 # Firewall
     echo ===============================================
     echo "Setting up firewall..."
